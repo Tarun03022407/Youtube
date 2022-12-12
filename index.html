@@ -1,0 +1,487 @@
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            font-family: 'poppins',sans-serif;
+            box-sizing: border-box;
+        }
+        a{
+            text-decoration: none;
+            color: #5a5a5a;
+        }
+        img{
+            cursor: pointer;
+        }
+        .flex-div{
+            display: flex;
+            align-items: center;
+        }
+        nav{
+            padding: 10px 2%;
+            justify-content: space-between;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+            background: #fff;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+
+        }
+        .nav-right img{
+            width: 35px;
+            height: 35px;
+        margin-right: 25px;
+        }
+        .nav-right .user-icon{
+width: 40px;
+/* height: 27px; */
+border-radius: 50%;
+margin-right: 0;
+        }
+        .nav-left .menu-icon{
+            width: 23px;
+            height: 18px;
+            margin-right: 25px;
+            
+        }
+        .nav-left .logo{
+            width: 110px;
+            background: none;
+            
+        }
+        .nav-middle .mic-icon{
+            width: 18px;
+        }
+        .nav-middle .search-box{
+            border: 1px solid #ccc;
+            margin-right: 15px;
+            padding: 10px 15px;
+            border-radius: 25px;
+            
+        }
+        .nav-middle .search-box input{
+            width: 400px;
+            border: 0;
+            outline: 0;
+            background: transparent;
+            font-size:15px
+        }
+        .nav-middle .search-box img{
+            width: 15px;
+        }
+
+        #container,#main{
+            display: grid;
+            grid-template-columns: repeat(4,20%);
+            justify-content: space-between;
+            /* margin-top: 5%; */
+            grid-gap: 2%;
+            text-align: center;
+            cursor: pointer;
+            /* box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; */
+        }
+
+        img{
+            width: 95%;
+        }
+        .search-btn{
+            width: 23px;
+            height: 18px;
+        }
+        .sidebar{
+            background: #fff;
+            width: 15%;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            padding-left: 2%;
+            padding-top: 80px;
+        }
+        .shortcut-links a img{
+            width: 20px;
+            margin-right: 20px;
+        }
+        .shortcut-links a{
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            width: fit-content;
+            flex-wrap: wrap;
+        }
+        .shortcut-links a:first-child{
+            color: #ed3833;
+        }
+        .slidebar hr{
+            border: 0;
+            height: 1px;
+            background-color: #ccc;
+            width: 85%;
+        }
+        .subscribed-list h3{
+            font-size: 13px;
+            margin: 20px 0;
+            color: #5a5a5a;
+        }
+        .subscribed-list a{
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            width: fit-content;
+            flex-wrap: wrap;
+        }
+        .subscribed-list a img{
+            width: 25px;
+            border-radius: 50%;
+            margin-right: 20px;
+        }
+        .small-sidebar{
+            width: 5%;
+
+        }
+        .small-sidebar a p{
+            display: none;
+        }
+        .small-sidebar h3{
+            display: none;
+        }
+        .small-sidebar hr{
+            width: 50%;
+            margin-bottom:25px ;
+        }
+        #container,#main{
+            
+            padding-left: 17%;
+            padding-right: 2%;
+            padding-top: 20px;
+            padding-bottom: 20px;
+        }
+
+    </style>
+</head>
+<body>
+    <nav class="flex-div">
+        <div class="nav-left flex-div">
+            <img class="menu-icon" src="images/menu.png" alt="">
+            <img  class="logo" src="https://upload.wikimedia.org/wikipedia/commons/3/34/YouTube_logo_%282017%29.png" alt="">
+
+        </div>
+        <div class="nav-middle flex-div">
+            <div class="search-box flex-div">
+                <input  type="text" id="query" placeholder="Search">
+                <img class="search-btn" onclick="searchVideos()"  src="images/search.png" alt="">
+            </div>
+
+            <img class="mic-icon" src="images/voice-search.png" alt="">
+            
+
+        </div>
+        <div class="nav-right flex-div">
+            
+            <img src="images/upload.png" alt="">
+            <img src="images/more.png" alt="">
+            <img class="logo" src="images/notification.png" alt="">
+           <img onclick="gotosub()" class="user-icon" src="images/Jack.png"  >
+            
+        </div>
+
+    </nav>
+
+    <!-- ...sidebar...  -->
+    <div class="sidebar">
+        <div class="shortcut-links">
+            <a href=""><img src="images/home.png" alt=""><p>Home</p></a>
+            <a href=""><img src="images/explore.png" alt=""><p>Explore</p></a>
+            <a href=""><img src="images/subscriprion.png" alt=""><p>Subscription</p></a>
+            <a href=""><img src="images/library.png" alt=""><p>Library</p></a>
+            <a href=""><img src="images/history.png" alt=""><p>History</p></a>
+            <a href=""><img src="images/playlist.png" alt=""><p>Playlist</p></a>
+            <a href=""><img src="images/messages.png" alt=""><p>Messages</p></a>
+            <a href=""><img src="images/show-more.png" alt=""><p>Show More</p></a>
+            <!-- <hr> -->
+
+
+        </div>
+        <!-- <div class="subscribed-list">
+            <h3>SUBSCRIBED</h3>
+            <a href=""><img src="images/Jack.png" alt=""><p>Jack Nichola</p></a>
+            <a href=""><img src="images/simon.png" alt=""><p>Simon Baker</p></a>
+            <a href=""><img src="images/tom.png" alt=""><p>Tom Hardy</p></a>
+            <a href=""><img src="images/megan.png" alt=""><p>Megan Ryan</p></a>
+            <a href=""><img src="images/cameron.png" alt=""><p>Cameron Diaz</p></a>
+
+
+        </div> -->
+    </div>
+
+
+
+    <!-- .......main...... -->
+
+    <div id="container"></div>
+    <div id="main"> </div>
+
+
+    <div id="container2"></div>
+
+
+
+
+</body>
+</html>
+<script>
+
+
+function gotosub(){
+    window.location.href="signup.html"
+}
+
+
+
+let menuIcon=document.querySelector(".menu-icon")
+let sidebar=document.querySelector(".sidebar")
+
+
+menuIcon.onclick=()=>{
+    sidebar.classList.toggle("small-sidebar");
+}
+
+
+//1.searchvideos
+// async function searchVideos() now in es6
+
+const API_KEY = `AIzaSyDEoIWJYu3fYNIAmQoKMGj0ILjarqRK5-Y` 
+
+
+const container_div= document.getElementById("container")
+
+const searchVideos= async () => {
+
+    //1.accept qeury
+    //2. url ready
+   // let url = https://youtube.googleapis.com/youtube/v3/search?part=snippet.&q=rrr&key=[YOUR_API_KEY] 
+
+
+   //how yt identifies each video
+
+
+   //yt identifies each vodeo based on its video (this is shown as "v"  not only q in url) 
+
+try{
+    const query = document.getElementById("query").value
+
+    const res = await fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=20&q=${query}&key=${API_KEY}`)
+
+    const data = await res.json()
+
+    const actual_data=data.items
+
+    appendVideos(actual_data)
+    // console.log(actual_data)
+    // console.log(data)
+}
+    catch (error){
+    console.log("error:",error)
+}
+    //query
+
+    //fetch needs url
+
+    //url needs query
+
+}
+
+
+const appendVideos = (data) => {
+    container_div.innerHTML = null
+    document.getElementById("main").innerHTML=null
+
+    //nature of data ? -- array of object
+
+    data.forEach(( {snippet,id} ) => {
+
+        // de-structuring
+        //
+
+
+// console.log("el:",el)
+
+
+// data that we need
+//1. thumbnail
+//2. videoid
+//3. title
+//4. channel name
+
+const title = snippet.title;
+
+const videoId= id.videoId;
+
+const thumbnail = snippet.thumbnails.high.url;
+
+const channel_name = snippet.channelTitle;
+
+// console.log(title)
+
+const div = document.createElement("div")
+
+const img = document.createElement("img")
+img.src = thumbnail
+
+const title_html= document.createElement("h4")
+title_html.innerText= title
+
+
+const channel_html = document.createElement("h5")
+channel_html.innerText= channel_name
+
+let data = {
+   videoId,
+   snippet,
+ };
+ console.log(data)
+
+
+div.onclick=()=>{
+    //now what do you want to happen when dic is clicked?
+
+
+    //transfer video details from index.js to video.js
+    // console.log(title_html)
+
+
+    storeClickedvideo(data)
+};
+
+div.append(img,title_html,channel_html)
+
+container_div.append(div)
+
+
+    });
+
+
+};
+
+
+
+
+function storeClickedvideo(data){
+    
+
+    //store data in LS
+
+   localStorage.setItem("clicked_item",JSON.stringify(data))
+
+   window.location.href="video.html"
+
+
+
+}
+
+
+let main=document.getElementById("main")
+
+const popularVideos = async () => {
+    try {
+      const res = await fetch(`https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&maxResults=50&regionCode=US&key=${API_KEY}`);
+
+      const { items } = await res.json();
+      let data = items;
+      console.log(data);
+      popularVideo(data)
+    } catch (error) {
+      console.log("error:", error);
+    }
+  }
+  window.addEventListener('load',()=>{
+    let query = document.getElementById("query").value
+    if(query!=""){
+        searchVideos()
+    }else{
+        popularVideos()
+    }
+
+  })
+
+  let popularVideo=(data) =>{
+    document.getElementById("main").innerHTML=null;
+    data.forEach(( {snippet,id} ) => {
+
+        const title = snippet.title;
+
+const videoId= id;
+
+const thumbnail = snippet.thumbnails.high.url;
+
+const channel_name = snippet.channelTitle;
+
+// console.log(title)
+
+const div = document.createElement("div")
+
+const img = document.createElement("img")
+img.src = thumbnail
+
+const title_html= document.createElement("h4")
+title_html.innerText= title
+title_html.style.marginTop="10px"
+
+
+const channel_html = document.createElement("h5")
+channel_html.innerText= channel_name
+channel_html.style.marginTop="10px"
+
+
+let data = {
+   videoId,
+   snippet,
+ };
+ console.log(data)
+
+div.onclick=()=>{
+    //now what do you want to happen when dic is clicked?
+
+
+    //transfer video details from index.js to video.js
+    // console.log(title_html)
+
+
+    storeClickedvideo(data)
+};
+
+div.append(img,title_html,channel_html)
+
+document.getElementById("main").append(div)
+
+    });
+
+};
+
+function storeClickedvideo(data){
+    
+    //store data in LS
+
+   localStorage.setItem("clicked_item",JSON.stringify(data))
+
+   window.location.href="video.html"
+
+}
+
+
+
+</script>
+
+
+

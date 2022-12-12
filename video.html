@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #navbar{
+            height: 50px;
+           
+            
+        }
+        .flex-div{
+            background-color:rgb(44, 42, 42)
+           
+        }
+        .logo{
+            border-radius: 5px;
+        }
+      
+        /* #main{
+            display: flex;
+            height: 400px;
+        } */
+        
+     
+
+
+
+        /* nav */
+        *{
+            margin: 0;
+            padding: 0;
+            font-family: 'poppins',sans-serif;
+            box-sizing: border-box;
+        }
+        a{
+            text-decoration: none;
+            color: #5a5a5a;
+        }
+        img{
+            cursor: pointer;
+        }
+        .flex-div{
+            display: flex;
+            align-items: center;
+        }
+        nav{
+            padding: 10px 2%;
+            justify-content: space-between;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+            background: #fff;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+
+        }
+        .nav-right img{
+            width: 35px;
+            height: 32px;
+        margin-right: 25px;
+        }
+        .nav-right .user-icon{
+width: 30px;
+/* height: 27px; */
+border-radius: 50%;
+margin-right: 0;
+        }
+        .nav-left .menu-icon{
+            width: 23px;
+            height: 18px;
+            margin-right: 25px;
+            
+        }
+        .nav-left .logo{
+            width: 110px;
+            background: none;
+            
+        }
+        .nav-middle .mic-icon{
+            width: 18px;
+        }
+        .nav-middle .search-box{
+            border: 1px solid #ccc;
+            margin-right: 15px;
+            padding: 10px 15px;
+            border-radius: 25px;
+            background-color: black;
+            
+        }
+        .nav-middle .search-box input{
+            width: 400px;
+            border: 0;
+            outline: 0;
+            background: transparent;
+            font-size:15px
+        }
+        .nav-middle .search-box img{
+            width: 15px;
+        }
+        #video_details{
+            margin-top: 0%;
+            height: 500px;
+            padding-top: 0;
+        }
+
+    </style>
+</head>
+<body onload="playVideo()" >
+    <nav class="flex-div">
+        <div class="nav-left flex-div">
+            <img class="menu-icon" src="images/menu.png" alt="">
+            <img onclick="gotohome()" style="background-color: white;" class="logo" src="https://upload.wikimedia.org/wikipedia/commons/3/34/YouTube_logo_%282017%29.png" alt="">
+
+        </div>
+        <div class="nav-middle flex-div">
+            <div class="search-box flex-div">
+                <input  type="text" id="query" placeholder="Search">
+                <img class="search-btn" onclick="searchVideos()"  src="images/search.png" alt="">
+            </div>
+
+            <img class="mic-icon" src="images/voice-search.png" alt="">
+            
+
+        </div>
+        <div class="nav-right flex-div">
+            <img src="images/upload.png" alt="">
+            <img src="images/more.png" alt="">
+            <img class="logo" src="images/notification.png" alt="">
+            <img class="user-icon" src="images/Jack.png">
+        </div>
+
+    </nav>
+ 
+    <div id="video_details"></div>
+    <div id="video_content">
+    </div>
+         
+
+        <!-- <iframe width="560" src="" frameborder="0"></iframe> -->
+
+
+</body>
+</html>
+
+<script>
+//what we need to kknow in video.html?
+
+//which video was clicked
+
+
+//order of loading content?
+//html then js
+
+//when dom is loaded ,run js
+const video_details_div = document.getElementById("video_details")
+
+const playVideo=()=>{
+
+    let data = JSON.parse(localStorage.getItem("clicked_item"))||[];
+
+    
+
+// iframe-url 
+//1show video ==iframe (maps,spotify,audio,video)
+
+//what can be the embedd url for yt video??
+
+//we mneed to pass video id of whatever video we clicked on
+
+
+
+
+const iframe = document.createElement("iframe");
+
+iframe.src=`https://www.youtube.com/embed/${data.videoId}?autoplay=1&mute=1`;
+
+iframe.width="100%"
+iframe.height="100%"
+iframe.setAttribute("allowfullscreen",true)
+iframe.setAttribute("autoplay",true)
+
+video_details_div.append(iframe);
+
+
+
+//2show video title
+//3 show description
+
+
+const title = data.title;
+
+const channel_name = data.channelTitle;
+
+const video_content_div=document.getElementById("video_content")
+
+const showdetails=()=>{
+
+    const detail= document.createElement("div")
+
+
+const title_html= document.createElement("h4")
+title_html.innerText= data.snippet.title
+title_html.style.marginTop="10px"
+title_html.style.marginLeft="30px"
+
+
+
+
+const channel_html = document.createElement("h5")
+channel_html.innerText= data.snippet.channelTitle
+channel_html.style.marginTop="10px"
+channel_html.style.marginLeft="30px"
+
+
+
+
+detail.append(title_html,channel_html)
+
+video_content_div.append(detail)
+
+
+}
+showdetails()
+
+}
+
+gotohome=()=>{
+    window.location.href="index.html"
+}
+
+</script>
